@@ -1,0 +1,10 @@
+# Large downloaded model
+AssignmentII/GoogleNews-vectors-negative300.bin
+
+# Downloaded datasets
+AssignmentII/webzio_*.json
+
+# Colab-exported HTML and downloaded page assets (the notebook is the source)
+AssignmentI/Assignment1.ipynb - Colab.html
+AssignmentI/Assignment1.ipynb - Colab_files/
+AssignmentII/Assignment2.html

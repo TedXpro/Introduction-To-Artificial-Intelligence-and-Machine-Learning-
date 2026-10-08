@@ -1,0 +1,14 @@
+# Conda environment for the course assignments.
+#
+#   conda env create -f environment.yml
+#   conda activate ie-ai-ml
+#
+# The Python packages come from requirements.txt (single source of truth).
+name: ie-ai-ml
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+      - -r requirements.txt

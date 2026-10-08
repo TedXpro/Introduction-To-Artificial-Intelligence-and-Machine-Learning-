@@ -1,0 +1,21 @@
+# Python dependencies for the course assignments.
+# Tested with Python 3.8 (conda env "tf2", Python 3.8.20).
+#
+#   pip install -r requirements.txt
+#
+# Conda users: `conda env create -f environment.yml` installs this file for you.
+#
+# Assignment I only uses the standard library (csv), so it needs nothing from here.
+
+# --- Assignment II: word2vec & semantic similarity ---
+gensim==4.3.3          # KeyedVectors, n_similarity, most_similar
+numpy==1.22.4          # gensim 4.3.x needs numpy < 2.0
+scipy==1.7.3           # scipy.spatial.distance.cosine; gensim 4.3.x needs scipy < 1.14
+pandas==2.0.3          # ranking results in DataFrames
+scikit-learn==1.0.2    # sklearn.manifold.TSNE (the notebook passes n_iter=, which scikit-learn 1.7 removed)
+matplotlib==3.4.3      # t-SNE scatter plot
+
+# --- Running the notebooks ---
+notebook==6.5.7
+ipykernel==6.29.5
+pywinpty==2.0.13; sys_platform == "win32"   # pulled in by notebook; 2.0.14 has no Python 3.8 wheel
