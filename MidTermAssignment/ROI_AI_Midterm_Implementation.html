@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ROI for AI - Midterm Implementation Report</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 20mm 18mm;
+    @bottom-right {
+      content: counter(page);
+      font-size: 9pt;
+      color: #666;
+    }
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #24292e;
+    line-height: 1.55;
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+  }
+  .header-table {
+    width: 100%;
+    border-bottom: 2px solid #0366d6;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  .header-table td {
+    vertical-align: top;
+  }
+  .institution {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #0366d6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .course-title {
+    font-size: 10pt;
+    color: #586069;
+  }
+  .doc-title {
+    font-size: 18pt;
+    font-weight: 800;
+    color: #1a1f2c;
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    font-size: 11pt;
+    font-style: italic;
+    color: #444d56;
+  }
+  .author {
+    font-size: 10pt;
+    font-weight: 600;
+    color: #24292e;
+    margin-top: 6px;
+  }
+  .badge {
+    display: inline-block;
+    background: #e1f0ff;
+    color: #0366d6;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+  h2 {
+    font-size: 12.5pt;
+    font-weight: 700;
+    color: #0366d6;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 4px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+    break-after: avoid;
+  }
+  h3 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #24292e;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    break-after: avoid;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  ul, ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 22px;
+  }
+  li {
+    margin-bottom: 4px;
+  }
+  .quote-box {
+    background-color: #f6f8fa;
+    border-left: 4px solid #0366d6;
+    padding: 12px 16px;
+    margin: 12px 0 16px 0;
+    font-size: 9.5pt;
+    color: #24292e;
+    border-radius: 0 4px 4px 0;
+  }
+  .quote-box strong {
+    color: #0366d6;
+  }
+  .formula {
+    background-color: #f6f8fa;
+    padding: 8px 14px;
+    margin: 8px 0 12px 0;
+    font-size: 9.5pt;
+    border-radius: 4px;
+    break-inside: avoid;
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 9pt;
+    break-inside: avoid;
+  }
+  table.data-table th {
+    background-color: #f1f8ff;
+    color: #0366d6;
+    text-align: left;
+    padding: 6px 10px;
+    border: 1px solid #d1d5da;
+    font-weight: 600;
+  }
+  table.data-table td {
+    padding: 6px 10px;
+    border: 1px solid #e1e4e8;
+    vertical-align: top;
+  }
+  table.data-table tr:nth-child(even) {
+    background-color: #fafbfc;
+  }
+  table.data-table td.num, table.data-table th.num {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .keep-together {
+    break-inside: avoid;
+  }
+  code {
+    background-color: #f6f8fa;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 8.5pt;
+    color: #d73a49;
+  }
+</style>
+</head>
+<body>
+
+<table class="header-table">
+  <tr>
+    <td>
+      <div class="institution">IE University &bull; School of Science and Technology</div>
+      <div class="course-title">Master in Computer Science &amp; Business Technology (MCSBT) &bull; Introduction to AI &amp; Machine Learning</div>
+      <div class="doc-title">ROI for AI &bull; Midterm Project Report</div>
+      <div class="subtitle">Word2Vec search over RFP notices in PySpark</div>
+      <div class="author">Yohannes Belay Woldeyes</div>
+    </td>
+    <td style="text-align: right; width: 140px;">
+      <span class="badge">Midterm Assignment</span><br><br>
+      <span style="font-size: 8.5pt; color: #586069;">Term 1, 2026<br>Grade Component: 100 pts</span>
+    </td>
+  </tr>
+</table>
+
+<h2>1. My ROI idea from the discussion board</h2>
+
+<div class="quote-box">
+  <strong>Original "ROI for AI" discussion post:</strong><br>
+  <em>"Enterprise sales engineers lose substantial time manually searching through fragmented technical documentation to answer repetitive enterprise RFPs, creating a bottleneck that limits deal flow.</em><br><br>
+  <em>An internal GenAI engine indexed on past winning proposals can automatically draft verified answers to routine questions, freeing engineers to focus solely on expert review while enabling the business to pursue far more bids with existing staff."</em>
+</div>
+
+<p>
+The return comes from two places: engineers spend fewer hours searching for material they have already written, and the same team can respond to more bids.
+</p>
+
+<h2>2. What I implemented for this midterm</h2>
+<p>
+I built the search part of the idea. An engineer types in a requirement and gets back the 50 closest matching notices, ranked by Word2Vec similarity. The notebook does not draft answers, so this report only makes claims about search.
+</p>
+
+<h2>3. Dataset</h2>
+<ul>
+  <li><strong>Source:</strong> EuroTender, public procurement notices from the EU's Tenders Electronic Daily, published on Hugging Face as <code>sinceaihq/eurotender-cpv</code> under CC-BY 4.0.</li>
+  <li><strong>Subset:</strong> 15,952 competition notices listed as English, published from October 2025 to September 2026 and saved as <code>rfp_ted_notices.csv</code>. Removing repeated titles leaves 15,540.</li>
+  <li><strong>Coverage:</strong> all kinds of procurement, not only IT: 8,618 services, 5,368 supplies and 1,966 works notices.</li>
+  <li><strong>Why it is a stand-in:</strong> these notices are written by buyers, not vendors. Real proposals are private, so I use the notices in place of a company's own proposal archive. The method would be the same on the real archive.</li>
+</ul>
+
+<div class="keep-together">
+<p>The file has the same shape as the Crunchbase file from the assignment:</p>
+<table class="data-table">
+  <thead>
+    <tr><th>Crunchbase column</th><th>My column</th><th>Role in the notebook</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>crunchbase_uuid</code></td><td><code>notice_id</code></td><td>Unique identifier</td></tr>
+    <tr><td><code>name</code></td><td><code>title</code></td><td>The article title returned by the search</td></tr>
+    <tr><td><code>short_description</code></td><td><code>description</code></td><td>The article body used for training (median length of 51 words)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>4. How the notebook works</h2>
+<p>
+The notebook follows the professor's template and ran on Apache Spark 4.0.4 in Google Colab.
+</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th style="width: 24%;">Step</th>
+      <th style="width: 34%;">Spark component</th>
+      <th style="width: 42%;">What it does</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1. Load and clean</strong></td>
+      <td><code>spark.read.csv()</code> with <code>escape='"'</code>, <code>filter()</code>, <code>dropDuplicates(['title'])</code></td>
+      <td>Loads 15,952 rows, keeps rows with a description (none were empty) and keeps each title once, leaving 15,540.</td>
+    </tr>
+    <tr>
+      <td><strong>2. Tokenize and remove stopwords</strong></td>
+      <td><code>RegexTokenizer(pattern=r'\w+')</code>, <code>StopWordsRemover</code></td>
+      <td>Splits <code>description</code> into lowercase words and removes stopwords, reducing 1,309,699 tokens to 833,258 (36.4% removed).</td>
+    </tr>
+    <tr>
+      <td><strong>3. Train the model</strong></td>
+      <td><code>Word2Vec(vectorSize=100, minCount=5, maxIter=10, seed=42)</code></td>
+      <td>Uses Skip-Gram: each word is used to predict the words around it, and the weights learned while doing this become the word vectors.</td>
+    </tr>
+    <tr>
+      <td><strong>4. Turn text into vectors</strong></td>
+      <td><code>model.transform()</code></td>
+      <td>Averages the word vectors of each notice and of the search query into one 100-number vector.</td>
+    </tr>
+    <tr>
+      <td><strong>5. Rank</strong></td>
+      <td><code>cossim()</code>, <code>orderBy()</code>, <code>show(50)</code></td>
+      <td>Scores the query against all 15,540 notices using cosine similarity and shows the top 50 titles.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="formula">
+  <strong>Cosine similarity:</strong> similarity(q, d) = (q &middot; d) / (&#8214;q&#8214; &times; &#8214;d&#8214;), where q is the query vector and d is the notice vector.
+</div>
+
+<h3>Where I changed the template</h3>
+<ul>
+  <li><strong>Reading the CSV:</strong> added <code>escape='"'</code>, because the text in this file writes quotes as <code>""</code>.</li>
+  <li><strong>Repeated titles:</strong> removed them because the result is a list of titles, so each should appear once.</li>
+  <li><strong>Training:</strong> raised <code>maxIter</code> from the default of 1 to 10, because one pass underfit the data (see section 5), and fixed the seed.</li>
+  <li><strong>Search scope:</strong> used every notice instead of the template's 30,000-row limit, because the dataset is small enough.</li>
+</ul>
+
+<div class="keep-together">
+<h3>What the model learned</h3>
+<p>Closest words from <code>findSynonyms</code>:</p>
+<ul>
+  <li><strong><code>software</code>:</strong> hardware (0.798), licences (0.766), licenses (0.711), firmware (0.659), solution (0.624).</li>
+  <li><strong><code>security</code>:</strong> cybersecurity (0.618), soc (0.608), incidents (0.605), privacy (0.593), threat (0.593).</li>
+</ul>
+</div>
+
+<h2>5. Search results and evaluation</h2>
+<p>
+I tested three queries. The notebook shows the full top 50 titles for each; the first three are below.
+</p>
+<table class="data-table">
+  <thead>
+    <tr><th>Query</th><th>Top 3 titles</th><th class="num">Similarity</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3"><em>cybersecurity threat monitoring vulnerability assessment</em></td>
+      <td>Services for the Design, Development and Analysis of Cybersecurity Indexes</td><td class="num">0.822</td>
+    </tr>
+    <tr><td>Cyber Security Consultancy and Technical Services</td><td class="num">0.810</td></tr>
+    <tr><td>Provision of Security Operations Centre and Cyber Defence services to the Rehab Group</td><td class="num">0.795</td></tr>
+    <tr>
+      <td rowspan="3"><em>cloud migration database infrastructure management</em></td>
+      <td>Request for tender for the provision of Oracle Cloud@Customer Implementation, Managed Services and Anciliary Services</td><td class="num">0.844</td>
+    </tr>
+    <tr><td>DESC: Hosting and Support Services</td><td class="num">0.837</td></tr>
+    <tr><td>Request for Tenders for the Provision of Pharmacovigilance Safety Database and Case Management System</td><td class="num">0.825</td></tr>
+    <tr>
+      <td rowspan="3"><em>data protection privacy compliance</em></td>
+      <td>Outsourced Data Protection Service</td><td class="num">0.823</td>
+    </tr>
+    <tr><td>Risk, Regulatory, and Compliance Services</td><td class="num">0.728</td></tr>
+    <tr><td>Legal services support</td><td class="num">0.716</td></tr>
+  </tbody>
+</table>
+
+<h3>Keyword check</h3>
+<p>
+The data has no labels saying which notice answers which query, so I use a simple check. Each query gets a list of topic terms, and a notice counts as relevant if its title or description contains one of them. <strong>Precision at 50</strong> is the share of the top 50 that are relevant. <strong>Base rate</strong> is the share of all notices that are relevant, which is what picking at random would give on average. <strong>Lift</strong> is precision divided by base rate. I chose the terms myself, so this is a rough measure.
+</p>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Query</th>
+      <th class="num">Relevant in top 50</th>
+      <th class="num">Precision at 50</th>
+      <th class="num">Base rate</th>
+      <th class="num">Lift</th>
+      <th class="num">Reading the titles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Cybersecurity</td><td class="num">31</td><td class="num">0.62</td><td class="num">1.4%</td><td class="num">45.2</td><td class="num">About 31</td></tr>
+    <tr><td>Cloud and database</td><td class="num">39</td><td class="num">0.78</td><td class="num">3.3%</td><td class="num">23.8</td><td class="num">About 21</td></tr>
+    <tr><td>Data protection</td><td class="num">13</td><td class="num">0.26</td><td class="num">0.6%</td><td class="num">43.9</td><td class="num">5 to 9</td></tr>
+  </tbody>
+</table>
+<p>
+All three queries do far better than chance, but reading the titles shows the keyword check is too generous for the cloud query, because it also counts general IT systems such as CRM, HR and print services. The data protection query is the weakest: only 0.6% of notices mention the topic, so most results are nearby security and compliance notices.
+</p>
+
+<div class="keep-together">
+<h3>Effect of training passes</h3>
+<p>
+Relevant notices in the top 50 using the keyword check. The 1-pass column comes from a separate run with <code>maxIter = 1</code>.
+</p>
+<table class="data-table">
+  <thead>
+    <tr><th>Query</th><th class="num">1 pass</th><th class="num">10 passes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Cybersecurity</td><td class="num">4</td><td class="num">31</td></tr>
+    <tr><td>Cloud and database</td><td class="num">32</td><td class="num">39</td></tr>
+    <tr><td>Data protection</td><td class="num">10</td><td class="num">13</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>6. What this means for the ROI</h2>
+<p>
+The results support using this search as a shortlist for an engineer to review, not as a final answer. On the strongest query, about 31 of the 50 titles were on topic; on the weakest, 5 to 9 were. An engineer would still need to check each result.
+</p>
+<p>
+This midterm does not measure time saved or extra bids won, so I do not claim a financial figure. To work out the return, a company would run a pilot on its own proposal archive and measure the values in this calculation:
+</p>
+<div class="formula">
+  <strong>Yearly benefit</strong> = (search hours saved per RFP &times; RFPs per year &times; hourly cost of an engineer) + (extra bids per year &times; win rate &times; margin per win)<br><br>
+  <strong>ROI</strong> = (yearly benefit &minus; yearly cost of the system) / yearly cost of the system
+</div>
+
+<h2>7. Limits</h2>
+<ul>
+  <li>Averaging word vectors loses the meaning of a word in context. "Security" also brings in guarding and travel risk notices, and the data protection query returned "Vulnerability Assessments to International Protection Applicants".</li>
+  <li>A high similarity score does not guarantee a relevant notice, so the scores cannot be read as a measure of quality.</li>
+  <li>These notices are requests from buyers, so the search finds similar requirements, not past answers. To reuse past answers, the same method would have to run on a company's own proposals.</li>
+</ul>
+
+<h2>8. Submitted files</h2>
+<ul>
+  <li><strong>Notebook:</strong> <code>MCSBT_MIDTERM_ASSIGNMENT.ipynb</code> and <code>MCSBT_MIDTERM_ASSIGNMENT.html</code>, with outputs.</li>
+  <li><strong>Data:</strong> <code>rfp_ted_notices.zip</code>, containing the exact subset used. The full source dataset is at <a href="https://huggingface.co/datasets/sinceaihq/eurotender-cpv">huggingface.co/datasets/sinceaihq/eurotender-cpv</a>.</li>
+</ul>
+
+</body>
+</html>
