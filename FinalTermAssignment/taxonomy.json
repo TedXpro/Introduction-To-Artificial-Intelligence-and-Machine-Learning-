@@ -1,0 +1,62 @@
+{
+  "Checking or savings account": [
+    "checking",
+    "savings",
+    "overdraft",
+    "debit",
+    "deposit",
+    "deposits",
+    "atm",
+    "branch",
+    "withdrawal",
+    "nsf"
+  ],
+  "Credit card": [
+    "credit_card",
+    "card",
+    "cards",
+    "statement",
+    "apr",
+    "limit",
+    "annual",
+    "rewards",
+    "purchase",
+    "merchant"
+  ],
+  "Money transfer, virtual currency, or money service": [
+    "zelle",
+    "cash_app",
+    "cashapp",
+    "paypal",
+    "venmo",
+    "wire",
+    "transfer",
+    "crypto",
+    "bitcoin",
+    "coinbase"
+  ],
+  "Mortgage": [
+    "mortgage",
+    "escrow",
+    "modification",
+    "foreclosure",
+    "refinance",
+    "servicer",
+    "home",
+    "property",
+    "heloc",
+    "appraisal"
+  ],
+  "Vehicle loan or lease": [
+    "car",
+    "vehicle",
+    "auto",
+    "repossession",
+    "repossessed",
+    "lease",
+    "dealership",
+    "dealer",
+    "title",
+    "repo"
+  ]
+}

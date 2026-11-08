@@ -4,6 +4,11 @@ AssignmentII/GoogleNews-vectors-negative300.bin
 # Downloaded datasets
 AssignmentII/webzio_*.json
 
+# Final project: raw CFPB exports (about 430 MB), the unzipped CSV and the local test environment
+FinalTermAssignment/data/raw/
+FinalTermAssignment/data/*.csv
+FinalTermAssignment/.venv/
+
 # Colab-exported HTML and downloaded page assets (the notebook is the source)
 AssignmentI/Assignment1.ipynb - Colab.html
 AssignmentI/Assignment1.ipynb - Colab_files/
