@@ -43,6 +43,16 @@ def read_export(zip_path):
                 yield chunk.loc[has_story & in_scope, list(COLUMNS)]
 
 
+def profile(d):
+    return pd.Series({
+        **{product: (d["product"] == product).mean() for product in BANK_PRODUCTS},
+        "payout rate": (d["company_response"] == "Closed with monetary relief").mean(),
+        "Older American tag": d["tags"].str.contains("Older American").mean(),
+        "Servicemember tag": d["tags"].str.contains("Servicemember").mean(),
+        "January and February": d["date_received"].str[5:7].isin(["01", "02"]).mean(),
+    })
+
+
 def main():
     exports = sorted(RAW_DIR.glob("CCDB_Export_*_2025.zip"))
     frames = []
@@ -59,6 +69,11 @@ def main():
     sample.to_csv(OUT_CSV, index=False)
     print(f"Saved {len(sample):,} rows to {OUT_CSV} ({OUT_CSV.stat().st_size / 1e6:.1f} MB)")
     print(sample["product"].value_counts().to_string())
+
+    check = pd.DataFrame({"all in scope": profile(df), "random sample": profile(sample)})
+    check["difference (points)"] = (check["random sample"] - check["all in scope"]) * 100
+    print("\nShares in all in-scope complaints (the notebook's FULL_2025 values) and in the sample:")
+    print(check.to_string(float_format=lambda v: f"{v:.4f}"))
 
 
 if __name__ == "__main__":

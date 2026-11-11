@@ -108,6 +108,7 @@ Group: Yohannes Belay Woldeyes, Vidak Vukadinovic, Jorge Plaza de los Reyes Álv
 | [Final_Project_Complaint_Intelligence.ipynb](Final_Project_Complaint_Intelligence.ipynb) | The project notebook, for a Colab GPU (T4) runtime. The final run of 8 Nov 2026 is saved with its outputs. |
 | [Final_Project_Complaint_Intelligence.html](Final_Project_Complaint_Intelligence.html) | The same notebook as HTML, for the submission |
 | `figures.zip` | Charts, scorecard and result tables from the final run, for the slides |
+| [Complaint_Intelligence_Final_12_slides.pptx](Complaint_Intelligence_Final_12_slides.pptx) | The 12-slide presentation, built on the high-score example's structure, with speaker notes |
 | `archive/colab_edit_guides/` | The paste-in guides used to update the notebook in Colab (brief v2, prompt fix, final text) |
 | [prepare_dataset.py](prepare_dataset.py) | Builds the project CSV from the six raw CFPB exports |
 | `data/cfpb_bank_complaints_2025.zip` | The project dataset (60,000 complaints, 20 MB); upload this to Colab |
