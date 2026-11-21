@@ -105,11 +105,12 @@ Group: Yohannes Belay Woldeyes, Vidak Vukadinovic, Jorge Plaza de los Reyes Álv
 
 | File | What it is |
 | --- | --- |
-| [Final_Project_Complaint_Intelligence.ipynb](Final_Project_Complaint_Intelligence.ipynb) | The project notebook, for a Colab GPU (T4) runtime. The final run of 8 Nov 2026 is saved with its outputs. |
+| [Final_Project_Complaint_Intelligence.ipynb](Final_Project_Complaint_Intelligence.ipynb) | The project notebook, for a Colab GPU (T4) runtime. The run of 11 Nov 2026, after the in-class feedback, is saved with its outputs. |
 | [Final_Project_Complaint_Intelligence.html](Final_Project_Complaint_Intelligence.html) | The same notebook as HTML, for the submission |
 | `figures.zip` | Charts, scorecard and result tables from the final run, for the slides |
-| [Complaint_Intelligence_Final_12_slides.pptx](Complaint_Intelligence_Final_12_slides.pptx) | The 12-slide presentation, built on the high-score example's structure, with speaker notes |
-| `archive/colab_edit_guides/` | The paste-in guides used to update the notebook in Colab (brief v2, prompt fix, final text) |
+| [Complaint_Intelligence_Final_v2_12_slides.pptx](Complaint_Intelligence_Final_v2_12_slides.pptx) | The 12-slide deck for the submission, updated after the feedback, with speaker notes |
+| [Complaint_Intelligence_Final_12_slides.pptx](Complaint_Intelligence_Final_12_slides.pptx) | The deck as presented on 11 Nov |
+| `archive/colab_edit_guides/` | The paste-in guides used to update the notebook in Colab (brief v2, prompt fix, final text, v3 for the feedback) |
 | [prepare_dataset.py](prepare_dataset.py) | Builds the project CSV from the six raw CFPB exports |
 | `data/cfpb_bank_complaints_2025.zip` | The project dataset (60,000 complaints, 20 MB); upload this to Colab |
 | `data/cfpb_bank_complaints_2025.csv` | The same data unzipped (77 MB, not in git) |
@@ -136,3 +137,15 @@ Noted by me from class (not written on the course page):
 - Slides should have little or no code, preferably none.
 - Put evaluation metrics, tables and graphs in the slides.
 - Evaluation metrics are a must and are crucial.
+
+### Feedback after our presentation (11 Nov)
+
+| Comment | Where it is handled |
+| --- | --- |
+| Mention routing | Slide 3 names routing as step 2; slide 6 starts with what routing means; on slide 10 the agent routes each question to search filters |
+| RAG came a bit too early | RAG is now one slide (10), after all the other steps |
+| One slide with the end-to-end architecture | Slide 3 |
+| Training and test sizes on one slide; we added validation | Slide 4: 70 / 10 / 20 split, stratified by product and payout; notebook sections 1 and 5 |
+| Size of the dataset, random or stratified? | Slide 4: a simple random sample, within 0.2 points of all 183,544 complaints; notebook section 3 |
+| Finding duplicates is a goal (Jorge's part), not only removing them | Slide 5 and notebook section 4: 19 campaigns, almost none paid out |
+| One model comparison slide near the end; "What are we measuring? Table!" | Slide 11; notebook section 10 |

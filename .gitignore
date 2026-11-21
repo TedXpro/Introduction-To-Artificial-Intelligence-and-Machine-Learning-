@@ -13,3 +13,9 @@ FinalTermAssignment/.venv/
 AssignmentI/Assignment1.ipynb - Colab.html
 AssignmentI/Assignment1.ipynb - Colab_files/
 AssignmentII/Assignment2.html
+
+# Temporary Office lock files & Jupyter checkpoints
+~$*
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
